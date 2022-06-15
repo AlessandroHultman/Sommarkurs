@@ -12,11 +12,9 @@ app = Flask(__name__)
 @app.route('/chatbot', methods=['POST'])
 def chat_response():
     data = request.get_json()
-    print(type(data)) # todo remove
-
+    print(data) # todo remove after troubleshooting
     msg = data['payload']
     res = chatbot_response(msg)
-
     # return serialized python object as a JSON formatted string
     return json.dumps({
         "type": "CHATBOT_MESSAGE",
