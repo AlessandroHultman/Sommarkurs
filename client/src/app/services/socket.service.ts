@@ -5,7 +5,7 @@ import { ChatMessageDto } from "../models/chatMessageDto";
   providedIn: 'root'
 })
 export class SocketService {
-  private socket: WebSocket | undefined;
+  public socket: WebSocket | undefined;
   public chatHistory: ChatMessageDto[] = [];
 
   constructor() { }
@@ -19,8 +19,10 @@ export class SocketService {
 
     this.socket.onmessage = (event) => {
       const data = JSON.parse(event.data);
-      const chatMsg = new ChatMessageDto(data.type, data.payload);
-      this.chatHistory.push(chatMsg);
+      if(data.type === "CHATBOT_MESSAGE") {
+        const chatMsg = new ChatMessageDto(data.type, data.payload);
+        this.chatHistory.push(chatMsg);
+      }
     }
 
     this.socket.onclose = (event) => {
@@ -34,5 +36,6 @@ export class SocketService {
 
   public sendMessage(chatMessage: ChatMessageDto) {
     this.socket?.send(JSON.stringify(chatMessage));
+    this.chatHistory.push(chatMessage);
   }
 }

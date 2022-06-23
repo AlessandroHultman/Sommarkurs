@@ -9,22 +9,21 @@ import { SocketService } from 'src/app/services/socket.service';
   styleUrls: ['./chatbot.component.css']
 })
 export class ChatbotComponent implements OnInit {
-  private running: boolean;
-
-  constructor(public socketService: SocketService) {
-    this.running = false;
-  }
+  
+  constructor(public socketService: SocketService) { }
 
   ngOnInit(): void {
     this.socketService.connect();
   }
+
   public sendMessage(sendForm: NgForm): void {
-    let chatMsgType: string = "CHAT_MESSAGE";
-    const chatMessageDto = new ChatMessageDto(chatMsgType, sendForm.value.payload);
-    this.socketService.chatHistory.push(chatMessageDto);
-    this.socketService.sendMessage(chatMessageDto);
+    const chatMsgType: string = "CHAT_MESSAGE";
+    const chatMsgDto = new ChatMessageDto(chatMsgType, sendForm.value.payload);
+    this.socketService.sendMessage(chatMsgDto);
     sendForm.resetForm();
-    this.running = true;
+    document.getElementById("message-box")!.scrollTop = document.getElementById(
+      "message-box"
+    )!.scrollHeight;
   }
 
   public toggleChatbox(): void {
