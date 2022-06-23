@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node-dev --respawn server.ts",
-    "dev": "nodemon --exec ts-node socket.ts"
+    "dev": "nodemon --exec ts-node socket-server.ts"
   },
   "keywords": [],
   "author": "",
