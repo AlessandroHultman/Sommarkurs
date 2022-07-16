@@ -12,7 +12,7 @@ const wss = new WebSocketServer({ server: server });
 wss.on("connection", (webSocketClient) => {
   webSocketClient.on("message", (message) => {
     const chatMsg = JSON.parse(message.toString());
-    console.log(chatMsg);
+    console.log(chatMsg); // todo check msg type before proceeding
     let sendRequest = requestResponse(chatMsg.payload.toString());
     sendRequest.then((response) => {
       webSocketClient.send(JSON.stringify(response));

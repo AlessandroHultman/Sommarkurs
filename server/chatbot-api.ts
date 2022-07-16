@@ -1,4 +1,4 @@
-import request from 'request-promise'
+import request from 'request-promise';
 
 export async function requestResponse(message: string) {
   const chatMsg = {

@@ -21,7 +21,7 @@ export class SocketService {
       const data = JSON.parse(event.data);
       if(data.type === "CHATBOT_MESSAGE") {
         const chatMsg = new ChatMessageDto(data.type, data.payload);
-        this.chatHistory.push(chatMsg);
+        this.chatHistory.push(chatMsg); // todo fixa autoscroll (low prio)
       }
     }
 
