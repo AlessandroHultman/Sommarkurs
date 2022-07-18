@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import validator from 'validator';
+import bcrypt from 'bcrypt';
 
 const userSchema = new mongoose.Schema({
   username: {
@@ -41,11 +42,11 @@ const userSchema = new mongoose.Schema({
   { timestamps: true }
 );
 
-// mongoose hook fire before doc saved to db
-userSchema.pre('save', function(next) {
-  console.log('New user about to be created and saved to db.');
-
-  // next();
+// mongoose hook that fires pre middleware to hash passwords before saving to db
+userSchema.pre('save', async function(next) {
+  const salt = await  bcrypt.genSalt();
+  this.password = await bcrypt.hash(this.password, salt);
+  next();
 });
 
 const User = mongoose.model('user', userSchema);

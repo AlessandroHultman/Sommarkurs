@@ -56,24 +56,24 @@ body {
   border: none;
   height: 48px;
   width: 48px;
-  background: rebeccapurple;
+  background: #252f3d;
   padding: 14px;
   color: white;
 }
 
 #chatbot_toggle:hover {
-  background: #7d56a5;
+  background: #4b5b70;
 }
 
 .line {
   height: 1px;
-  background-color: rebeccapurple;
+  background-color: #252f3d;;
   width: 100%;
   opacity: 0.2;
 }
 
 .main-title {
-  background-color: rebeccapurple;
+  background-color: #252f3d;;
   font-size: large;
   font-weight: bold;
   display: flex;
@@ -134,7 +134,7 @@ body {
 }
 
 .input-send svg {
-  fill: rebeccapurple;
+  fill: #252f3d;
   margin: 11px 8px;
 }
 
@@ -150,9 +150,9 @@ body {
   animation-iteration-count: 1;
   animation-timing-function: ease-in;
   animation-duration: 100ms;
-  color: black;
+  color: white;
   border-radius: 8px 8px 2px 8px;
-  background-color: lavender;
+  background-color: #3b86f7;
 }
 
 .chat-message-received {
@@ -165,7 +165,7 @@ body {
   animation-duration: 100ms;
   color: black;
   border-radius: 8px 8px 8px 2px;
-  background-color: lavender;
+  background-color: #e9e9eb;
 }
 
 @keyframes fadeIn {
