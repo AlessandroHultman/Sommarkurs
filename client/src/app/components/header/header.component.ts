@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
+  public isOn: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  public toggleAccountForm(): void {
+    this.isOn = !this.isOn;
   }
 
 }
