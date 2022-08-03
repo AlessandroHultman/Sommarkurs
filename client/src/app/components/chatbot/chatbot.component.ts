@@ -9,6 +9,8 @@ import { SocketService } from 'src/app/services/socket.service';
   styleUrls: ['./chatbot.component.css']
 })
 export class ChatbotComponent implements OnInit {
+
+  public messageSent: string = "CHAT_MESSAGE";
   
   constructor(public socketService: SocketService) { }
 

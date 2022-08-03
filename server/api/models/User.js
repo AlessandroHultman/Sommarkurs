@@ -32,12 +32,6 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
-  // tokens: [{
-  //   token: {
-  //     type: String,
-  //     required: true
-  //   }
-  // }]
 },
   { timestamps: true }
 );
@@ -48,6 +42,19 @@ userSchema.pre('save', async function(next) {
   this.password = await bcrypt.hash(this.password, salt);
   next();
 });
+
+userSchema.statics.login = async function(email, password) {
+  const user = await this.findOne({ email: email });
+  if (user) {
+    // compare user entered password with hashed password in db
+    const auth = await bcrypt.compare(password, user.password);
+    if (auth) {
+      return user;
+    }
+    throw Error('Incorrect password');
+  }
+  throw Error('Incorrect email');
+}
 
 const User = mongoose.model('user', userSchema);
 export default User;

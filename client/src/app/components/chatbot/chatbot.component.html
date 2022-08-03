@@ -28,9 +28,8 @@
           <li class="list-group-item" *ngFor="let chatMessage of socketService.chatHistory">
             <div class="chat-message-div">
               <span style="flex-grow:1">
-                <div class="chat-message-sent">
-                  {{chatMessage.payload}}
-                </div>
+                <div *ngIf="chatMessage.type == messageSent else elseBlock"><div class="chat-message-sent">{{ chatMessage.payload }}</div></div>
+                <ng-template #elseBlock><div class="chat-message-received"> {{ chatMessage.payload }} </div></ng-template>
               </span>
             </div>
           </li>

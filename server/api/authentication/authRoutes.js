@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { signup_post } from './authController.js';
+import { signup_post, login_post } from './authController.js';
 
 const authRoutes = Router();
 
@@ -9,6 +9,6 @@ authRoutes.post('/signup', signup_post);
 
 // router.get('/login', authController.login_get);
 
-// router.post('/login', authController.login_post);
+authRoutes.post('/login', login_post);
 
 export default authRoutes;

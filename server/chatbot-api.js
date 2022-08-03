@@ -1,6 +1,6 @@
 import request from 'request-promise';
 
-export async function requestResponse(message: string) {
+export async function requestResponse(message) {
   const chatMsg = {
     "type": "CHAT_MESSAGE",
     "payload": message
