@@ -4,6 +4,14 @@ import jwt from 'jsonwebtoken';
 function errorHandler(err) {
   let errors = { username: '', email: '', password: '' };
 
+  if (err.message === 'Incorrect email') {
+    errors.email = 'That email is not registered';
+  }
+  
+  if (err.message === 'Incorrect password') {
+    errors.password = 'Password is incorrect';
+  }
+
   if (err.code === 11000) {
     errors.email = 'Email is already in use';
     return errors;
@@ -20,7 +28,7 @@ function errorHandler(err) {
 
 const MAX_AGE = 3 * 24 * 60 * 60;
 
-function createToken(id) {
+const createToken = (id) => {
   return jwt.sign({ id }, 'ecommercewebapi', {
     expiresIn: MAX_AGE
   });
@@ -40,6 +48,7 @@ export async function signup_post(req, res) {
     const user = await User.create({ username, email, password });
     const token = createToken(user._id);
     res.cookie('jwt', token, {
+      domain: 'localhost',
       httpOnly: true,
       maxAge: MAX_AGE * 1000
     });
@@ -51,11 +60,17 @@ export async function signup_post(req, res) {
 }
 
 export async function login_post(req, res) {
-  const { email, password } = req.body;
+  const payload = req.body;
   try {
-    const user = await User.login(email, password);
+    const user = await User.login(payload.login, payload.login_password);
+    const token = createToken(user._id);
+    res.cookie('jwt', token, {
+      httpOnly: true,
+      maxAge: MAX_AGE * 1000
+    });
     res.status(200).json({ user: user._id });
   } catch (err) {
-    res.status(400).json({});
+    const errors = errorHandler(err);
+    res.status(400).json({ errors });
   }
 }

@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
 import authRoutes from './api/authentication/authRoutes.js';
 import { initializeSocketServer } from './socket-server.js';
 
@@ -20,7 +21,12 @@ app.listen(process.env.PORT , () => {
 // middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:4200',
+    credentials: true
+  })
+);
+app.use(cookieParser());
 
 // routes
 app.use(authRoutes);
