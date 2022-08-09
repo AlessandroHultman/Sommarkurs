@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { ChatbotComponent } from './components/chatbot/chatbot.component';
 import { HeaderComponent } from './components/header/header.component';
 import { AccountComponent } from './components/account/account.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ChatbotComponent,
     HeaderComponent,
-    AccountComponent
+    AccountComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

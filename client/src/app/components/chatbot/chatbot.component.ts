@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ChatMessageDto } from 'src/app/models/chatMessageDto';
+import { ChatMessageDto } from 'src/app/shared/models/chatMessageDto';
 import { SocketService } from 'src/app/services/socket.service';
 
 @Component({

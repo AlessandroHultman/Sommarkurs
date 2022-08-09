@@ -18,7 +18,8 @@ export class AccountComponent implements OnInit {
       const res = await fetch("http://localhost:8000/signup", {
         method: "POST",
         body: JSON.stringify(signupForm),
-        headers: { "Content-Type": "application/json" }
+        headers: { "Content-Type": "application/json" },
+        credentials: "include"
       });
       const data = await res.json();
       console.log(data);

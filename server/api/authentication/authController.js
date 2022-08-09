@@ -2,6 +2,7 @@ import User from '../models/User.js';
 import jwt from 'jsonwebtoken';
 
 function errorHandler(err) {
+  console.log(err.message, err.code);
   let errors = { username: '', email: '', password: '' };
 
   if (err.message === 'Incorrect email') {
@@ -73,4 +74,9 @@ export async function login_post(req, res) {
     const errors = errorHandler(err);
     res.status(400).json({ errors });
   }
+}
+
+export function logout_get(req, res) {
+  res.cookie('jwt', '', { maxAge: 1 });
+  res.redirect('/');
 }

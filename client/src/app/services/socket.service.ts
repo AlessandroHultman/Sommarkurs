@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { ChatMessageDto } from "../models/chatMessageDto";
+import { ChatMessageDto } from "../shared/models/chatMessageDto";
 
 @Injectable({
   providedIn: 'root'

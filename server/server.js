@@ -5,6 +5,7 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import authRoutes from './api/authentication/authRoutes.js';
+import productRoutes from './api/routes/product.js';
 import { initializeSocketServer } from './socket-server.js';
 
 // load environment variables
@@ -30,6 +31,7 @@ app.use(cookieParser());
 
 // routes
 app.use(authRoutes);
+app.use(productRoutes);
 
 // run socket server
 initializeSocketServer();
@@ -42,5 +44,3 @@ mongoose.connect(process.env.DB_URL)
   .catch((err) => {
     console.log(err);
   })
-
-// todo refactor everything in separate functions
